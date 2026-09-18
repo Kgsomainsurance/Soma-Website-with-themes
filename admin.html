@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Controls — Soma Insurance</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1420;
+    --blue:#0A6FB0;
+    --green:#0B6B4A;
+    --green-bright:#12915F;
+    --bg:#F3F7F8;
+    --card:#FFFFFF;
+    --line:#D9E2E4;
+    --ink:#101B22;
+    --ink-soft:#4C5E66;
+    --radius:14px;
+    --shadow: 0 1px 2px rgba(11,20,32,.04), 0 8px 24px -8px rgba(11,20,32,.12);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:24px;
+  }
+  h1,h2{font-family:'Sora',sans-serif;margin:0;letter-spacing:-.01em;}
+
+  /* ---- passcode gate ---- */
+  .gate{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:36px 32px;max-width:340px;width:100%;text-align:center;
+  }
+  .gate h1{font-size:20px;margin-bottom:6px;}
+  .gate p{color:var(--ink-soft);font-size:14px;margin:0 0 22px;}
+  .gate input{
+    width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);
+    font-size:16px;text-align:center;letter-spacing:.08em;margin-bottom:12px;
+    font-family:'Inter',sans-serif;
+  }
+  .gate input:focus{outline:2px solid var(--blue);outline-offset:2px;border-color:transparent;}
+  .gate button{
+    width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;
+    background:var(--green);color:#fff;font-family:'Sora',sans-serif;font-weight:600;font-size:15px;
+  }
+  .gate button:hover{background:var(--green-bright);}
+  .gate .err{color:#C0392B;font-size:13px;margin-top:10px;min-height:16px;}
+
+  /* ---- panel ---- */
+  .panel{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:32px;max-width:440px;width:100%;
+  }
+  .panel h1{font-size:20px;}
+  .panel .sub{color:var(--ink-soft);font-size:13.5px;margin:4px 0 26px;}
+  .row{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:16px 0;border-top:1px solid var(--line);
+  }
+  .row:first-of-type{border-top:none;}
+  .row-label{font-family:'Sora',sans-serif;font-weight:600;font-size:15px;}
+  .row-note{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .switch{
+    position:relative;width:46px;height:26px;flex-shrink:0;
+  }
+  .switch input{opacity:0;width:0;height:0;position:absolute;}
+  .slider{
+    position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;
+    transition:background .18s;
+  }
+  .slider::before{
+    content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;
+    background:#fff;border-radius:50%;transition:transform .18s;
+    box-shadow:0 1px 3px rgba(0,0,0,.25);
+  }
+  .switch input:checked + .slider{background:var(--green-bright);}
+  .switch input:checked + .slider::before{transform:translateX(20px);}
+  .switch input:disabled + .slider{opacity:.5;cursor:default;}
+
+  .status{font-size:12.5px;color:var(--ink-soft);margin-top:20px;min-height:16px;}
+  .note{
+    background:var(--bg);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;font-size:12.5px;color:var(--ink-soft);margin-top:22px;line-height:1.5;
+  }
+  .hidden{display:none;}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <h1>Site controls</h1>
+  <p>Enter your passcode to manage seasonal effects.</p>
+  <input type="password" id="passcodeInput" placeholder="Passcode" autocomplete="off" inputmode="numeric">
+  <button onclick="tryUnlock()">Unlock</button>
+  <div class="err" id="gateErr"></div>
+</div>
+
+<div class="panel hidden" id="panel">
+  <h1>Seasonal effects</h1>
+  <p class="sub">Toggle what visitors see on the live site — changes apply instantly, no code needed.</p>
+
+  <div class="row">
+    <div>
+      <div class="row-label">Snowfall</div>
+      <div class="row-note">Gentle falling snow across the whole page</div>
+    </div>
+    <label class="switch"><input type="checkbox" id="toggle-snow" onchange="updateSettings()"><span class="slider"></span></label>
+  </div>
+
+  <div class="row">
+    <div>
+      <div class="row-label">Fireworks</div>
+      <div class="row-note">Occasional bursts, good for holidays like the 4th or New Year's</div>
+    </div>
+    <label class="switch"><input type="checkbox" id="toggle-fireworks" onchange="updateSettings()"><span class="slider"></span></label>
+  </div>
+
+  <div class="row">
+    <div>
+      <div class="row-label">Halloween theme</div>
+      <div class="row-note">Shifts accent color to pumpkin orange</div>
+    </div>
+    <label class="switch"><input type="checkbox" id="toggle-halloween" onchange="onThemeToggle('halloween')"><span class="slider"></span></label>
+  </div>
+
+  <div class="row">
+    <div>
+      <div class="row-label">Easter theme</div>
+      <div class="row-note">Shifts accent colors to soft pastel green &amp; blue</div>
+    </div>
+    <label class="switch"><input type="checkbox" id="toggle-easter" onchange="onThemeToggle('easter')"><span class="slider"></span></label>
+  </div>
+
+  <div class="status" id="status"></div>
+  <div class="note">Only Halloween or Easter can be on at once — turning one on turns the other off. Your logo, layout, and core brand colors stay exactly as they are; this only shifts a couple of accent tones.</div>
+</div>
+
+<script>
+let passcode = sessionStorage.getItem('soma-admin-pass') || '';
+
+async function tryUnlock(){
+  const val = document.getElementById('passcodeInput').value.trim();
+  if(!val) return;
+  const ok = await loadSettings(val);
+  if(ok){
+    passcode = val;
+    sessionStorage.setItem('soma-admin-pass', val);
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('panel').classList.remove('hidden');
+  } else {
+    document.getElementById('gateErr').textContent = 'Incorrect passcode.';
+  }
+}
+
+async function loadSettings(pass){
+  try{
+    const res = await fetch('/api/settings');
+    if(!res.ok) return false;
+    const s = await res.json();
+    // Validate the passcode with a harmless no-op-equivalent POST of current values.
+    const check = await fetch('/api/settings', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-passcode':pass},
+      body: JSON.stringify(s)
+    });
+    if(!check.ok) return false;
+    document.getElementById('toggle-snow').checked = !!s.snow;
+    document.getElementById('toggle-fireworks').checked = !!s.fireworks;
+    document.getElementById('toggle-halloween').checked = !!s.halloween;
+    document.getElementById('toggle-easter').checked = !!s.easter;
+    return true;
+  }catch(e){ return false; }
+}
+
+function onThemeToggle(which){
+  if(which === 'halloween' && document.getElementById('toggle-halloween').checked){
+    document.getElementById('toggle-easter').checked = false;
+  }
+  if(which === 'easter' && document.getElementById('toggle-easter').checked){
+    document.getElementById('toggle-halloween').checked = false;
+  }
+  updateSettings();
+}
+
+async function updateSettings(){
+  const body = {
+    snow: document.getElementById('toggle-snow').checked,
+    fireworks: document.getElementById('toggle-fireworks').checked,
+    halloween: document.getElementById('toggle-halloween').checked,
+    easter: document.getElementById('toggle-easter').checked,
+  };
+  const statusEl = document.getElementById('status');
+  statusEl.textContent = 'Saving…';
+  try{
+    const res = await fetch('/api/settings', {
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-passcode':passcode},
+      body: JSON.stringify(body)
+    });
+    statusEl.textContent = res.ok ? 'Saved — live on the site now.' : 'Could not save. Try again.';
+  }catch(e){
+    statusEl.textContent = 'Could not save. Check your connection.';
+  }
+}
+
+// If a passcode was already remembered this browser session, unlock automatically.
+if(passcode){
+  loadSettings(passcode).then(ok=>{
+    if(ok){
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('panel').classList.remove('hidden');
+    } else {
+      sessionStorage.removeItem('soma-admin-pass');
+    }
+  });
+}
+document.getElementById('passcodeInput').addEventListener('keydown', e=>{
+  if(e.key === 'Enter') tryUnlock();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "soma-insurance-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Soma Insurance Group marketing site + booking notification function",
+  "dependencies": {
+    "resend": "^4.0.0",
+    "@vercel/kv": "^2.0.0"
+  }
+}
