@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Truck Insurance Quote — Soma Insurance Group</title>
+<meta name="description" content="Request a commercial truck insurance quote in Texas. Tell us about your trucks and operation and an agent will get back to you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1420;
+    --blue:#0A6FB0;
+    --teal:#0C6E63;
+    --green:#0B6B4A;
+    --green-bright:#12915F;
+    --bg:#F3F7F8;
+    --card:#FFFFFF;
+    --line:#D9E2E4;
+    --ink:#101B22;
+    --ink-soft:#4C5E66;
+    --radius:14px;
+    --shadow: 0 1px 2px rgba(11,20,32,.04), 0 8px 24px -8px rgba(11,20,32,.12);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0B1420;
+      --card:#101E29;
+      --line:#233642;
+      --ink:#EAF1F3;
+      --ink-soft:#9FB3BB;
+      color-scheme: dark;
+    }
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Sora',sans-serif;color:var(--ink);margin:0;letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px;}
+
+  header{
+    border-bottom:1px solid var(--line);
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+  .nav{
+    max-width:760px;margin:0 auto;padding:14px 24px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+  .brand img{height:40px;width:auto;}
+  .brand-name{font-family:'Sora',sans-serif;font-weight:800;font-size:18px;color:var(--ink);}
+  .brand-name span{color:var(--green-bright);}
+  .back{font-size:14px;font-weight:600;color:var(--ink-soft);text-decoration:none;white-space:nowrap;}
+  .back:hover{color:var(--ink);}
+
+  main{max-width:760px;margin:0 auto;padding:44px 24px 72px;}
+  .intro h1{font-size:clamp(28px,4.2vw,38px);font-weight:800;line-height:1.15;}
+  .intro p{color:var(--ink-soft);margin:12px 0 0;max-width:56ch;}
+
+  form{
+    margin-top:32px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);box-shadow:var(--shadow);padding:32px;
+  }
+  fieldset{border:none;margin:0 0 30px;padding:0;min-width:0;}
+  fieldset:last-of-type{margin-bottom:24px;}
+  legend{
+    font-family:'Sora',sans-serif;font-size:17px;font-weight:700;padding:0;margin-bottom:16px;
+    width:100%;border-bottom:1px solid var(--line);padding-bottom:10px;
+  }
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{display:flex;flex-direction:column;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:7px;}
+  label .opt{font-weight:400;}
+  input[type=text],input[type=tel],input[type=email],input[type=number],input[type=date],select,textarea{
+    width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);
+    border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;
+  }
+  textarea{min-height:84px;resize:vertical;}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);}
+  input:disabled{opacity:.55;cursor:not-allowed;}
+  .check{display:flex;align-items:center;gap:8px;margin-top:9px;font-size:13.5px;color:var(--ink-soft);cursor:pointer;}
+  .check input{width:16px;height:16px;accent-color:var(--green);margin:0;}
+  .hint{font-size:12.5px;color:var(--ink-soft);margin-top:6px;}
+
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+
+  .submit-row{display:flex;flex-direction:column;gap:12px;}
+  .btn{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:16px;border:none;cursor:pointer;
+    background:var(--green);color:#fff;border-radius:999px;padding:15px 28px;
+    box-shadow:0 6px 16px -6px rgba(11,107,74,.55);transition:background .15s;
+  }
+  .btn:hover{background:var(--green-bright);}
+  .btn:disabled{opacity:.6;cursor:wait;}
+  .error{color:#C0392B;font-size:14px;min-height:20px;}
+  .fine{font-size:12.5px;color:var(--ink-soft);}
+
+  .success{display:none;text-align:center;padding:36px 12px;}
+  .success.show{display:block;}
+  .success .tick{
+    width:56px;height:56px;border-radius:50%;background:var(--green);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 18px;
+  }
+  .success .tick svg{width:26px;height:26px;color:#fff;}
+  .success h2{font-size:22px;}
+  .success p{color:var(--ink-soft);margin:10px auto 0;max-width:44ch;}
+  .success a{
+    display:inline-block;margin-top:22px;font-weight:600;color:var(--green-bright);text-decoration:none;
+  }
+
+  .sms-note{font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin:0;}
+  .sms-note a{color:var(--ink-soft);text-decoration:underline;}
+
+  footer{background:var(--navy);color:#AFC2CA;padding:44px 0 26px;}
+  .foot-wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  footer h5{color:#fff;font-size:13px;font-weight:700;margin:0 0 14px;letter-spacing:.02em;font-family:'Sora',sans-serif;}
+  .foot-contact{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px;font-size:14.5px;}
+  .foot-contact li{display:flex;align-items:center;gap:12px;}
+  .foot-contact svg{width:20px;height:20px;flex-shrink:0;color:#7FD9C4;}
+  .foot-contact a{text-decoration:none;color:#AFC2CA;}
+  .foot-contact a:hover{color:#fff;}
+  .foot-bottom{
+    margin-top:36px;padding-top:20px;border-top:1px solid #1C2E3B;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#6E828A;
+  }
+  .foot-legal{display:flex;gap:18px;flex-wrap:wrap;}
+  .foot-legal a{color:#8FA3AB;text-decoration:none;}
+  .foot-legal a:hover{color:#fff;}
+
+  @media (max-width:620px){
+    .grid{grid-template-columns:1fr;}
+    form{padding:22px 18px;}
+    .brand-name{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="/" class="brand">
+      <img src="assets/soma-icon.png" alt="Soma Insurance Group">
+      <span class="brand-name">SOMA <span>INSURANCE GROUP</span></span>
+    </a>
+    <a href="/" class="back">Back to site</a>
+  </div>
+</header>
+
+<main>
+  <div class="intro">
+    <h1>Commercial truck insurance quote</h1>
+    <p>Answer a few quick questions about your trucks and operation. An agent will review them and contact you within one business day. We'll collect the remaining details by phone.</p>
+  </div>
+
+  <form id="truckForm" novalidate>
+    <fieldset>
+      <legend>About you</legend>
+      <div class="grid">
+        <div class="field">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="business">Business name</label>
+          <input type="text" id="business" name="business" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="field full">
+          <label for="dot">USDOT number</label>
+          <input type="text" id="dot" name="dot" inputmode="numeric" placeholder="e.g. 1234567">
+          <label class="check"><input type="checkbox" id="noDot"> I don't have a USDOT number yet</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Your trucks</legend>
+      <div class="grid">
+        <div class="field">
+          <label for="trucks">Number of trucks</label>
+          <input type="number" id="trucks" name="trucks" min="1" max="999" required>
+        </div>
+        <div class="field">
+          <label for="trailers">Number of trailers</label>
+          <input type="number" id="trailers" name="trailers" min="0" max="999" value="0" required>
+        </div>
+        <div class="field full">
+          <label for="truckType">Main truck type</label>
+          <select id="truckType" name="truckType" required>
+            <option value="">Select one</option>
+            <option>Tractor / semi</option>
+            <option>Box truck / straight truck</option>
+            <option>Dump truck</option>
+            <option>Pickup / hotshot</option>
+            <option>Flatbed</option>
+            <option>Tow truck / wrecker</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>How you operate</legend>
+      <div class="grid">
+        <div class="field full">
+          <label for="cargo">What do you haul?</label>
+          <select id="cargo" name="cargo" required>
+            <option value="">Select one</option>
+            <option>General freight (dry van)</option>
+            <option>Refrigerated</option>
+            <option>Building materials / flatbed freight</option>
+            <option>Dirt, sand, gravel, or aggregate</option>
+            <option>Vehicles / auto hauling</option>
+            <option>Hazardous materials</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="radius">How far do you usually drive?</label>
+          <select id="radius" name="radius" required>
+            <option value="">Select one</option>
+            <option>Local (under 50 miles)</option>
+            <option>Regional (50 to 300 miles)</option>
+            <option>Long haul (300+ miles)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="states">States you drive in</label>
+          <input type="text" id="states" name="states" placeholder="e.g. Texas, Louisiana" required>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Current insurance</legend>
+      <div class="grid">
+        <div class="field full">
+          <label for="expiration">When does your current policy expire?</label>
+          <input type="date" id="expiration" name="expiration">
+          <label class="check"><input type="checkbox" id="noPolicy"> I don't have a current policy, or I'm not sure</label>
+        </div>
+        <div class="field full">
+          <label for="notes">Anything else we should know? <span class="opt">(optional)</span></label>
+          <textarea id="notes" name="notes" maxlength="2000" placeholder="Special cargo, recent claims, a deadline, or anything that affects your quote"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true">
+      <label for="website">Leave this field empty</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="submit-row">
+      <button type="submit" class="btn" id="submitBtn">Request my truck quote</button>
+      <div class="error" id="formError" role="alert"></div>
+      <p class="sms-note">By submitting this form, you agree to receive text messages from Soma Insurance Group about your request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms-and-conditions">Terms &amp; Conditions</a>.</p>
+      <div class="fine">Quotes are subject to underwriting approval. Your information is only used to prepare your quote.</div>
+    </div>
+  </form>
+
+  <div class="success" id="success">
+    <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2>Request received</h2>
+    <p>An agent will contact you within one business day to go over your quote. If it's urgent, call us at 346-441-8001.</p>
+    <a href="/">Back to site</a>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-wrap">
+    <h5>Contact</h5>
+    <ul class="foot-contact">
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:info@somainsurancegroup.com">info@somainsurancegroup.com</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:3464418001">346-441-8001</a>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Cypress, TX</span>
+      </li>
+    </ul>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> Soma Insurance Group. Protecting what matters.</span>
+      <span class="foot-legal"><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const form = document.getElementById('truckForm');
+  const errEl = document.getElementById('formError');
+  const btn = document.getElementById('submitBtn');
+  const dot = document.getElementById('dot');
+  const noDot = document.getElementById('noDot');
+  const expiration = document.getElementById('expiration');
+  const noPolicy = document.getElementById('noPolicy');
+
+  noDot.addEventListener('change', () => {
+    dot.disabled = noDot.checked;
+    if (noDot.checked) dot.value = '';
+  });
+  noPolicy.addEventListener('change', () => {
+    expiration.disabled = noPolicy.checked;
+    if (noPolicy.checked) expiration.value = '';
+  });
+
+  function val(id){ return document.getElementById(id).value.trim(); }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errEl.textContent = '';
+
+    const required = ['name','business','phone','email','trucks','truckType','cargo','radius','states'];
+    for (const id of required) {
+      if (!val(id)) {
+        errEl.textContent = 'Please fill in all required fields.';
+        document.getElementById(id).focus();
+        return;
+      }
+    }
+    if (!noDot.checked && !val('dot')) {
+      errEl.textContent = 'Enter your USDOT number, or check "I don\'t have a USDOT number yet".';
+      dot.focus();
+      return;
+    }
+    if (!noPolicy.checked && !val('expiration')) {
+      errEl.textContent = 'Enter your policy expiration date, or check the box if you don\'t have a policy.';
+      expiration.focus();
+      return;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(val('email'))) {
+      errEl.textContent = 'Please enter a valid email address.';
+      document.getElementById('email').focus();
+      return;
+    }
+
+    const payload = {
+      name: val('name'),
+      business: val('business'),
+      phone: val('phone'),
+      email: val('email'),
+      dot: noDot.checked ? '' : val('dot'),
+      noDot: noDot.checked,
+      trucks: val('trucks'),
+      trailers: val('trailers'),
+      truckType: val('truckType'),
+      cargo: val('cargo'),
+      radius: val('radius'),
+      states: val('states'),
+      expiration: noPolicy.checked ? '' : val('expiration'),
+      noPolicy: noPolicy.checked,
+      notes: val('notes'),
+      website: val('website')
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/truck-quote', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error('Request failed');
+      form.style.display = 'none';
+      document.querySelector('.intro').style.display = 'none';
+      document.getElementById('success').classList.add('show');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } catch (err) {
+      errEl.textContent = "We couldn't send your request. Please try again, or call us at 346-441-8001.";
+      btn.disabled = false;
+      btn.textContent = 'Request my truck quote';
+    }
+  });
+</script>
+</body>
+</html>
